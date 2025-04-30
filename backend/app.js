@@ -4,6 +4,19 @@ const app = express();
 
 app.get("/favicon.ico", (req, res) => res.status(204)); // Ignore favicon requests and prevents from loading twice
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Header",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS"
+  );
+  next();
+});
+
 app.use("/api/posts", (req, res, next) => {
   const posts = [
     {
