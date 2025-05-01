@@ -4,14 +4,14 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.use(bodyParser.json()); // Parse JSON data from incoming requests
-app.use(bodyParser.urlencoded(){ extended: false});
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/favicon.ico", (req, res) => res.status(204)); // Ignore favicon requests and prevents from loading twice
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
-    "Access-Control-Allow-Header",
+    "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   res.setHeader(
@@ -25,8 +25,8 @@ app.post("/api/posts", (req, res, next) => {
   const post = req.body;
   console.log(post);
   res.status(201).json({
-    message: "Post added successfully!"
-  })
+    message: "Post added successfully!",
+  });
 });
 
 app.use("/api/posts", (req, res, next) => {
