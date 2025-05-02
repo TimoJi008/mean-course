@@ -8,7 +8,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://timoji008:RQOjCE3Hi76z75PR@cluster0.jxdkrrn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    "mongodb+srv://timoji008:RQOjCE3Hi76z75PR@cluster0.jxdkrrn.mongodb.net/node-angular?retryWrites=true&w=majority&appName=Cluster0"
   )
   .then(() => {
     console.log("Connected to database!");
@@ -40,7 +40,7 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
-  console.log(post);
+  post.save(); // Save the post to the database
   res.status(201).json({
     message: "Post added successfully!",
   });
