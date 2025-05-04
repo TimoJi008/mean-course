@@ -53,11 +53,6 @@ app.get("/api/posts", (req, res, next) => {
         message: "Posts fetched successfully!",
         posts: documents,
       });
-    })
-    .catch((error) => {
-      res.status(500).json({
-        message: "Fetching posts failed!",
-      });
     });
 });
 
